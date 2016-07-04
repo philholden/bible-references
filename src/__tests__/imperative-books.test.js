@@ -43,7 +43,7 @@ test('should parse books with chapter', t => {
   )
 })
 
-test.only('should parse multiple books with chapter', t => {
+test('should parse multiple books with chapter', t => {
   t.deepEqual(
     parseQuery('john 1, james 4'), [
       {
@@ -56,6 +56,23 @@ test.only('should parse multiple books with chapter', t => {
         start: {
           book: 'james',
           chapter: '4',
+        },
+      },
+    ]
+  )
+})
+
+test.only('should parse Mark 5-12', t => {
+  t.deepEqual(
+    parseQuery('Mark 5-12'), [
+      {
+        start: {
+          book: 'mark',
+          chapter: '5',
+        },
+        stop: {
+          book: 'mark',
+          chapter: '12',
         },
       },
     ]

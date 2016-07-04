@@ -1,4 +1,4 @@
-import { startsWithBook, bookRegex } from './bible-book-regex'
+import { endRange, bookRegex } from './bible-book-regex'
 import {
   normaliseBookName,
 } from './bible-book-names'
@@ -114,9 +114,11 @@ function withChapter(state) {
         ],
       }
     }
+    //comma book
     case BOOK: {
       return withRoot(state)
     }
+    //comma number
     case COMMA: {
       return withChapter({
         book: state.book,
@@ -135,12 +137,13 @@ function withChapter(state) {
       })
     }
     case HYPHEN: {
-      return withRange({
+      console.log('hyphen')
+      return withChapter(withRange({
         book: state.book,
         chapter: state.chapter,
         tail: token.tail,
         verseList: state.verseList,
-      })
+      }))
     }
     case COLON: {
       return withVerse({
@@ -157,8 +160,31 @@ function withChapter(state) {
 //reverts to chapter
 function withRange(state) {
   const token = parseFirstToken(state.tail)
-  switch(token.type) {
-    case NUMBER:
+  const start = {}
+  if (state.book) start.book = state.book
+  if (state.chapter) start.chapter = state.chapter
+  if (state.verse) start.verse = state.verse
+
+  const end = endRange(token.head)
+  console.log(token, end)
+  const stop = { ...start }
+  if (end.number) {
+    if (stop.verse) {
+      stop.verse = end.number
+    } else {
+      stop.chapter = end.number
+    }
+  }
+
+  return {
+    book: state.book,
+    chapter: state.chapter,
+    verse: token.head,
+    tail: token.tail,
+    verseList: [
+      ...state.verseList,
+      { start, stop },
+    ],
   }
 }
 function withVerse(state) {}
