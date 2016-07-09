@@ -1,61 +1,9 @@
 import test from 'ava'
 import is from 'is_js'
 import {
-  booksRegex,
-  refRegex,
-  endRange,
   partToRange,
   getRanges,
 } from '../bible-book-regex'
-
-test('endRange should parse book chapter verse', t => {
-  t.deepEqual(
-    endRange('john 3:16,'), {
-      book: 'john',
-      chapter: '3',
-      verse: '16',
-      tail: ',',
-    }
-  )
-})
-
-test('endRange should parse book chapter', t => {
-  t.deepEqual(
-    endRange('john 3,'), {
-      book: 'john',
-      chapter: '3',
-      tail: ',',
-    }
-  )
-})
-
-test('endRange should parse book', t => {
-  t.deepEqual(
-    endRange('john,'), {
-      book: 'john',
-      tail: ',',
-    }
-  )
-})
-
-test('endRange should parse verse chapter', t => {
-  t.deepEqual(
-    endRange('3:16,'), {
-      chapter: '3',
-      verse: '16',
-      tail: ',',
-    }
-  )
-})
-
-test('endRange should parse number', t => {
-  t.deepEqual(
-    endRange('16,'), {
-      number: '16',
-      tail: ',',
-    }
-  )
-})
 
 test('partToRange(john 3:16)', t => {
   t.deepEqual(
@@ -97,7 +45,7 @@ test('partToRange(john 3-4)', t => {
   )
 })
 
-test.only('partToRange(3-4) with context john', t => {
+test('partToRange(3-4) with context john', t => {
   t.deepEqual(
     partToRange('3-4', { book: 'john' } ), {
       start: { book: 'john', chapter:'3', verse:'1' },
@@ -107,7 +55,7 @@ test.only('partToRange(3-4) with context john', t => {
   )
 })
 
-test.only('partToRange(3-4) with context john 1', t => {
+test('partToRange(3-4) with context john 1', t => {
   t.deepEqual(
     partToRange('3-4', { book: 'john', chapter: '1' } ), {
       start: { book: 'john', chapter:'3', verse:'1' },
@@ -117,7 +65,7 @@ test.only('partToRange(3-4) with context john 1', t => {
   )
 })
 
-test.only('partToRange(3-4) with context john 1:2', t => {
+test('partToRange(3-4) with context john 1:2', t => {
   t.deepEqual(
     partToRange('3-4', {
       book: 'john',
@@ -131,7 +79,7 @@ test.only('partToRange(3-4) with context john 1:2', t => {
   )
 })
 
-test.only('partToRange(3) with context john 1:2', t => {
+test('partToRange(3) with context john 1:2', t => {
   t.deepEqual(
     partToRange('3', {
       book: 'john',
@@ -145,7 +93,7 @@ test.only('partToRange(3) with context john 1:2', t => {
   )
 })
 
-test.only('partToRange(3) with context john', t => {
+test('partToRange(3) with context john', t => {
   t.deepEqual(
     partToRange('3', {
       book: 'john',
@@ -187,7 +135,7 @@ test('partToRange(john 3:2-4:5)', t => {
   )
 })
 
-test.only('partToRange(john 3:2 - acts 4:5)', t => {
+test('partToRange(john 3:2 - acts 4:5)', t => {
   t.deepEqual(
     partToRange('john 3:2 - acts 4:5'), {
       start: { book: 'john', chapter:'3', verse:'2' },
@@ -197,7 +145,7 @@ test.only('partToRange(john 3:2 - acts 4:5)', t => {
   )
 })
 
-test.only('getRanges(john, matt, rev 5)', t => {
+test('getRanges(john, matt, rev 5)', t => {
   t.deepEqual(
     getRanges('john, matt, rev 5'), [
       {
@@ -216,7 +164,7 @@ test.only('getRanges(john, matt, rev 5)', t => {
   )
 })
 
-test.only('getRanges(john 1:8,10,11)', t => {
+test('getRanges(john 1:8,10,11)', t => {
   t.deepEqual(
     getRanges('john 1:8,10,11'), [
       {
@@ -235,7 +183,7 @@ test.only('getRanges(john 1:8,10,11)', t => {
   )
 })
 
-test.only('getRanges(john 1:8,10-15,11)', t => {
+test('getRanges(john 1:8,10-15,11)', t => {
   t.deepEqual(
     getRanges('john 1:8,10-15,11'), [
       {
@@ -254,7 +202,7 @@ test.only('getRanges(john 1:8,10-15,11)', t => {
   )
 })
 
-test.only('getRanges(john 1,10-15,11)', t => {
+test('getRanges(john 1,10-15,11)', t => {
   t.deepEqual(
     getRanges('john 1,10-15,11'), [
       {
