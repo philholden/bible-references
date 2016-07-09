@@ -72,6 +72,8 @@ const normalise = abbr.reduce((acc, bookAbbrs) => {
   return acc
 }, {})
 
+export const notUsed = () => {}
+
 export const normaliseBookName = name => normalise[name]
 
 export default abbr

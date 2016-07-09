@@ -1,7 +1,7 @@
 {
-  "presets": ["react", "es2015", "stage-1"],
   "env": {
     "lib": {
+      "presets": ["react", "es2015-webpack", "stage-1"],
       "plugins": [
         [
           "babel-plugin-webpack-loaders",
@@ -11,6 +11,9 @@
           }
         ]
       ]
+    },
+    "test": {
+      "presets": ["react", "es2015", "stage-1"],
     }
   }
 }
