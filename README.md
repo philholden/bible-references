@@ -1,6 +1,6 @@
 # Bible References
 
-https://travis-ci.org/philholden/bible-references
+[![https://api.travis-ci.org/philholden/bible-references.svg]](https://travis-ci.org/philholden/bible-references)
 
 Parses Bible references in a forgiving way so as to enable as-you-type Bible searches. Enables lists of verses parsed:
 
