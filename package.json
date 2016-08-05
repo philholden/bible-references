@@ -1,5 +1,5 @@
 {
-  "name": "@philholden/component-boilerplate",
+  "name": "bible-references",
   "version": "0.0.1-semantic",
   "description": "normalise bible references",
   "main": "lib/index.js",
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/philholden/bible-ref.git"
+    "url": "https://github.com/philholden/bible-references.git"
   },
   "keywords": [
     "react",
@@ -40,9 +40,9 @@
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "CC0",
   "bugs": {
-    "url": "https://github.com/philholden/component-boilerplate/issues"
+    "url": "https://github.com/philholden/bible-references/issues"
   },
-  "homepage": "https://github.com/philholden/bible-ref",
+  "homepage": "https://github.com/philholden/bible-references",
   "devDependencies": {
     "ava": "^0.15.2",
     "babel-cli": "^6.7.5",
@@ -62,8 +62,12 @@
     "cross-env": "^1.0.7",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.8.0",
+    "eslint-config-airbnb": "^9.0.1",
     "eslint-config-rackt": "^1.1.1",
     "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-flowtype": "^2.3.0",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.0.1",
     "eventsource-polyfill": "^0.9.6",
     "expect": "^1.16.0",
@@ -89,8 +93,8 @@
     "xregexp": "^3.1.1"
   },
   "config": {
-    "ghooksd": {
-      "pre-commit": "npm run test && npm run check-coverage"
+    "ghooks": {
+      "pre-commit": "npm run test"
     },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

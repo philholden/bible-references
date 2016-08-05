@@ -1,29 +1,114 @@
-# Component Boilerplate
+# Bible References
 
-[![travis build](https://img.shields.io/travis/philholden/component-boilerplate.svg?style=flat-square)](https://travis-ci.org/philholden/component-boilerplate)
-[![codecov coverage](https://img.shields.io/codecov/c/github/philholden/component-boilerplate.svg?style=flat-square)](https://codecov.io/github/philholden/component-boilerplate)
-[![version](https://img.shields.io/npm/v/@philholden/component-boilerplate.svg?style=flat-square)](http://npm.im/@philholden/component-boilerplate)
-[![downloads](https://img.shields.io/npm/dm/@philholden/component-boilerplate.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@philholden/component-boilerplate&from=2015-08-01)
-[![CC0 License](https://img.shields.io/npm/l/@philholden/component-boilerplate.svg?style=flat-square)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![travis build](https://img.shields.io/travis/philholden/bible-referencessvg?style=flat-square)](https://travis-ci.org/philholden/bible-references
+[![codecov coverage](https://img.shields.io/codecov/c/github/philholden/bible-referencessvg?style=flat-square)](https://codecov.io/github/philholden/bible-references
+[![version](https://img.shields.io/npm/v/@philholden/bible-referencessvg?style=flat-square)](http://npm.im/@philholden/bible-references
+[![downloads](https://img.shields.io/npm/dm/@philholden/bible-referencessvg?style=flat-square)](http://npm-stat.com/charts.html?package=@philholden/bible-referencesfrom=2015-08-01)
+[![CC0 License](https://img.shields.io/npm/l/@philholden/bible-referencessvg?style=flat-square)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
+Parses Bible references in a forgiving way so as to enable as-you-type Bible searches. Enables lists of verses parsed:
 
-This is a hybrid of [React Transform Boilerplate](https://github.com/gaearon/react-transform-boilerplate) and Kent C Dodds' [How to Write an Open Source JavaScript Library](https://egghead.io/lessons/javascript-how-to-write-a-javascript-library-introduction). It has the following features:
+* John 3:16
+* Acts 2:42-47
+* Rom 3:23,5:12-14,6:12,23, Gal 3:22
+* Mrk, Rev, Rom - Eph
+* Gn 1:1; Jn 1:1
+* mark16:1,3
+* Luke 3:10ff
+* Luke 2:1\nDan 1
 
-* Babel 6 hot loading
-* Testing via AVA
-* Null loaders to allow unit testing where components use loaders for CSS or images 
-* WebSockets via Socket.IO set up on server (delete if not needed)
-* All the semantic release, code coverage etc from Kent C Dodds
+## Features
+
+Tolerates whitespace:
+
+```
+John3:16-17
+John  3: 16 - 17  
+```
+Book names are case insensitive
+
+```
+john 3:16
+JOhN 3:16
+```
+
+Book name are recognised in many forms:
+
+```
+1 samuel, 1 sam, 1 sa, 1samuel, 1s, i sa, 1 sm, 1sa, i sam, 1sam, i samuel, 1st samuel, first samuel
+```
+
+Comma newline and semicolon [,\n;] can be used interchangeable as group separators 
+
+```
+Job 1:8,9, Mark 5
+Job 1:8,9; Mark 5
+Job 1:8;9; Mark 5
+
+Job 1:8,9
+Mark 5
+
+Job 1:8,9,
+Mark 5
+```
+Open ranges can be expressed as follows:
+
+```
+// range ends at end of chapter
+John 3:16ff
+
+// range ends at end of book
+John 3ff
+
+// range ends at end of Bible
+John 3:16 - 
+```
+## Output
+
+The output is expressed as an array of ranges:
+
+```javascript
+// john 1:8,10-15,11
+[
+  {
+    start: { book: 'john', chapter: '1', verse: '8' },
+    end: { book: 'john', chapter: '1', verse: '8' },
+  },
+  {
+    start: { book: 'john', chapter: '1', verse: '10' },
+    end: { book: 'john', chapter: '1', verse: '15' },
+  },
+  {
+    start: { book: 'john', chapter: '1', verse: '11' },
+    end: { book: 'john', chapter: '1', verse: '11' },
+  },
+]
+```
+
+An `end` property being `undefined` indicates the range continues to the end of smallest defined `end` property. i.e:
+
+* `end.verse === undefined` range ends at end of `end.chapter`
+* `end.chapter === undefined` range ends at end of `end.book`
+* `end.book === undefined` range ends at end of Bible
+
+## How it works
+
+We first split the input into parts using the group separator `/[,;\n]+/`:
+
+```
+'john 1:8,10-15,11' -> ['john 1:8', '10-15', '11']
+```
+
+Each of these parts will be mapped to a range of Bible verses. In the case above `'john 1:8'` is a range that starts and ends on the same verse.
+
+It also sets the context for the following ranges. Because `'john 1:8'` specifies a verse we know any groups following that do not specify a book or chapter will be verses in John 1. However if the next range does specify a book or chapter then the context for the following ranges will be set to that book and/or chapter. Note only start books and chapters (on the left of `'-'`) change the context for following verse.  
+
 
 ## Installation
 
 ```bash
-git clone https://github.com/philholden/component-boilerplate.git
-cd component-boilerplate
-npm install
-npm start
-open http://localhost:3000
+npm install --save-dev bible-references
 ```
 
 ## When setting up a new repo

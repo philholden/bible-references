@@ -1,6 +1,8 @@
 {
-  "extends": "rackt",
+  "parser": "babel-eslint",
+  "extends": "airbnb",
   "ecmaFeatures": {
+    "jsx": true,
     "modules": true
   },
   "env": {
@@ -8,16 +10,28 @@
     "node": true,
     "mocha": true
   },
-  "parser": "babel-eslint",
   "rules": {
-    "quotes": [2, "single"],
-    "strict": [2, "never"],
-    "comma-dangle": [ "error", "always-multiline" ],
+    "semi": [ 2, "never" ],
+    "no-console": 0,
+    "no-param-reassign": 0,
     "babel/generator-star-spacing": 1,
     "babel/object-shorthand": 1,
-    "babel/no-await-in-loop": 1
+    "babel/no-await-in-loop": 1,
+    "flowtype/space-after-type-colon": [1, "always"],
+    "flowtype/space-before-type-colon": [1, "never"],
+    "flowtype/type-id-match": [1, "^([A-Z][a-z0-9]+)+Type$"],
+    "react/sort-comp": 0
   },
   "plugins": [
-    "babel"
-  ]
+    "flowtype",
+    "babel",
+    "react"
+  ],
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  }
 }
+
+

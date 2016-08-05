@@ -1,29 +1,29 @@
 'use strict' // eslint-disable-line strict
-let path = require('path')
-let express = require('express')
-let webpack = require('webpack')
-let config = require('./webpack.config.dev')
-let compression = require('compression')
+const express = require('express')
+const webpack = require('webpack')
+const config = require('./webpack.config')({ dev: true })
+const compression = require('compression')
 
-// let requestProxy = require('express-request-proxy')
-// let objectAssign = require('object-assign')
+// const path = require('path')
+// const requestProxy = require('express-request-proxy')
+// const objectAssign = require('object-assign')
 
-let app = express()
-let server = require('http').createServer(app)
-//let io = require('socket.io')(server)
+const app = express()
+const server = require('http').createServer(app)
+// const io = require('socket.io')(server)
 
-let compiler = webpack(config)
-let port = 3000
+const compiler = webpack(config)
+const port = 3000
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
 }))
 
 app.use(require('webpack-hot-middleware')(compiler))
 
 app.use(compression({
-  threshold: 512
+  threshold: 512,
 }))
 
 app.use((req, res, next) => {
@@ -52,7 +52,7 @@ server.listen(port, '0.0.0.0', err => {
     console.log(err) // eslint-disable-line no-console
     return
   }
-  console.log('Listening at http://localhost:' + port) // eslint-disable-line no-console
+  console.log(`Listening at http://localhost:${port}`) // eslint-disable-line no-console
 })
 
 // io.on('connection', socket => {
