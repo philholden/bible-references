@@ -2,6 +2,7 @@
   "name": "bible-references",
   "description": "normalise bible references",
   "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "clean": "rimraf lib",
     "validate-webpack": "webpack-validator webpack2.config.js --env.prod",

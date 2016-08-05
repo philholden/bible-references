@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+test
+examples
+docs
+demo
+coverage
+*.sublime-project
+*.sublime-workspace
