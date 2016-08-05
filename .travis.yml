@@ -9,17 +9,15 @@ branches:
 notifications:
   email: false
 node_js:
-  - "5.1.0"
+  - "6.2.2"
 before_install:
   - npm i -g npm@^3.0.0
 before_script:
   - npm prune
 script:
-  - npm run test:cover
-  - npm run check-coverage
+  - npm run test
   - npm run build
 after_success:
-  - npm run report-coverage
   - npm run semantic-release
 branches:
   except:
