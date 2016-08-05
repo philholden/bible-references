@@ -157,10 +157,12 @@ export const getVerseRanges = refs => {
   .reduce((acc, ref) => {
     const range = partToRange(ref, acc.ctx)
     acc.ctx = range.ctx
-    acc.ranges.push({
-      start: range.start,
-      end: range.end,
-    })
+    if (range.start) {
+      acc.ranges.push({
+        start: range.start,
+        end: range.end,
+      })
+    }
     return acc
   }, {
     ctx: { book: 'genesis' },
