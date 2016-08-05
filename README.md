@@ -39,16 +39,21 @@ Book name are recognised in many forms:
 1 samuel, 1 sam, 1 sa, 1samuel, 1s, i sa, 1 sm, 1sa, i sam, 1sam, i samuel, 1st samuel, first samuel
 ```
 
-Comma newline and semicolon [,\n;] can be used interchangeable as group separators 
+Comma newline and semicolon [,\n;] can be used interchangeably as group separators 
 
 ```
 Job 1:8,9, Mark 5
+```
+```
 Job 1:8,9; Mark 5
+```
 Job 1:8;9; Mark 5
-
+```
+```
 Job 1:8,9
 Mark 5
-
+```
+```
 Job 1:8,9,
 Mark 5
 ```
