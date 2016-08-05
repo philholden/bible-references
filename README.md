@@ -1,11 +1,6 @@
 # Bible References
 
-[![travis build](https://img.shields.io/travis/philholden/bible-referencessvg?style=flat-square)](https://travis-ci.org/philholden/bible-references
-[![codecov coverage](https://img.shields.io/codecov/c/github/philholden/bible-referencessvg?style=flat-square)](https://codecov.io/github/philholden/bible-references
-[![version](https://img.shields.io/npm/v/@philholden/bible-referencessvg?style=flat-square)](http://npm.im/@philholden/bible-references
-[![downloads](https://img.shields.io/npm/dm/@philholden/bible-referencessvg?style=flat-square)](http://npm-stat.com/charts.html?package=@philholden/bible-referencesfrom=2015-08-01)
-[![CC0 License](https://img.shields.io/npm/l/@philholden/bible-referencessvg?style=flat-square)](https://creativecommons.org/publicdomain/zero/1.0/)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+https://travis-ci.org/philholden/bible-references
 
 Parses Bible references in a forgiving way so as to enable as-you-type Bible searches. Enables lists of verses parsed:
 
@@ -47,6 +42,7 @@ Job 1:8,9, Mark 5
 ```
 Job 1:8,9; Mark 5
 ```
+```
 Job 1:8;9; Mark 5
 ```
 ```
@@ -69,6 +65,7 @@ John 3ff
 // range ends at end of Bible
 John 3:16 - 
 ```
+
 ## Output
 
 The output is expressed as an array of ranges:
