@@ -2,6 +2,7 @@ import test from 'ava'
 
 import {
   normaliseBookName,
+  normaliseBookNameShort,
 } from '../bible-book-names'
 
 test('should normalise jhn', t => {
@@ -25,5 +26,11 @@ test('should normalise iii jn', t => {
 test('should normalise so to song of solomon', t => {
   t.true(
     normaliseBookName('so') === 'song of solomon'
+  )
+})
+
+test('should normalise so to song of solomon', t => {
+  t.true(
+    normaliseBookNameShort('song of solomon') === 'so'
   )
 })
