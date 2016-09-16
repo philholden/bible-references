@@ -67,7 +67,8 @@ const abbr = [
   ['revelation', 'rev', 're', 'the revelation']
 ]
 
-const shortest = (arr) => arr.sort((a, b) => a.length - b.length)[0]
+const shortest = (arr) =>
+  arr.sort((a, b) => a.length - b.length)[0]
 
 const normalise = abbr.reduce((acc, bookAbbrs) => {
   bookAbbrs.forEach(bookAbbr => acc[bookAbbr] = bookAbbrs[0])
