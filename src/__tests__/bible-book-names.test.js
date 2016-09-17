@@ -1,9 +1,14 @@
 import test from 'ava'
 
 import {
-  normaliseBookName,
-  normaliseBookNameShort,
+  getNormaliseBookName,
+  getNormaliseBookNameShort,
+  getLanguages,
 } from '../bible-book-names'
+
+const english = getLanguages('english')
+const normaliseBookName = getNormaliseBookName(english)
+const normaliseBookNameShort = getNormaliseBookNameShort(english)
 
 test('should normalise jhn', t => {
   t.true(

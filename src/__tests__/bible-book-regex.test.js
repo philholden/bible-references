@@ -1,9 +1,10 @@
 import test from 'ava'
-import is from 'is_js'
-import {
+import BibleBookRegex from '../bible-book-regex'
+
+const {
   partToRange,
   getVerseRanges,
-} from '../bible-book-regex'
+} = new BibleBookRegex('english', 'chinese')
 
 test('partToRange(john 3:16)', t => {
   t.deepEqual(
