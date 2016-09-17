@@ -3,4 +3,4 @@ export {
   getNormaliseBookNameShort,
   getLanguages,
 } from './bible-book-names'
-export { getVerseRanges } from './bible-book-regex'
+export { BibleBookRegex } from './bible-book-regex'
