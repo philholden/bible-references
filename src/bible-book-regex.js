@@ -16,7 +16,7 @@ export default function BibleBookRegex(...languageNames) {
   const bookChapterVerse =
     new RegExp(`^(${anyBookInAnyForm})\\s*(${chapter})[ ]*:[ ]*(${verse})\\b`)
   const bookChapter = new RegExp(`^(${anyBookInAnyForm})[ ]*(${chapter})\\b`)
-  const bookRegex = new RegExp(`^(?:${anyBookInAnyForm})\\b`)
+  const bookRegex = new RegExp(`^(?:${anyBookInAnyForm})`)
   const chapterVerse = new RegExp(`^(${chapter})[ ]*:[ ]*(${verse})\\b`)
   const bookFf = new RegExp(`^(?:${anyBookInAnyForm})[ ]*ff`)
 
@@ -88,7 +88,6 @@ export default function BibleBookRegex(...languageNames) {
     let isFf = false
     let [left, right] = part.split('-')
       .map(s => s.trim().toLowerCase())
-
     if (
       /\d{1,3}[ ]*ff$/i.test(left) ||
       bookFf.test(left)
@@ -147,6 +146,8 @@ export default function BibleBookRegex(...languageNames) {
           chapter: start.chapter,
         }
       }
+    } else{
+      console.log('match none',bookRegex)
     }
 
     return {

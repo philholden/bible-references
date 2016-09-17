@@ -6,6 +6,16 @@ const {
   getVerseRanges,
 } = new BibleBookRegex('english', 'chinese')
 
+test('partToRange(约翰福音 3:16)', t => {
+  t.deepEqual(
+    partToRange('约翰福音 3:16'), {
+      start: { book: 'john', chapter: '3', verse: '16' },
+      end: { book: 'john', chapter: '3', verse: '16' },
+      ctx: { book: 'john', chapter: '3', verse: '16' },
+    }
+  )
+})
+
 test('partToRange(john 3:16)', t => {
   t.deepEqual(
     partToRange('john 3:16'), {
