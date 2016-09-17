@@ -4,7 +4,7 @@ import {
   getLanguages,
 } from './bible-book-names'
 
-export default function BibleBookRegex(...languageNames) {
+export default function BibleReferences(...languageNames) {
   const bookNames = getLanguages(...languageNames)
   const normaliseBookName = getNormaliseBookName(bookNames)
   const normaliseBookNameShort = getNormaliseBookNameShort(bookNames)
@@ -16,7 +16,7 @@ export default function BibleBookRegex(...languageNames) {
   const bookChapterVerse =
     new RegExp(`^(${anyBookInAnyForm})\\s*(${chapter})[ ]*:[ ]*(${verse})\\b`)
   const bookChapter = new RegExp(`^(${anyBookInAnyForm})[ ]*(${chapter})\\b`)
-  const bookRegex = new RegExp(`^(?:${anyBookInAnyForm})`)
+  const bookRegex = new RegExp(`^(?:${anyBookInAnyForm})$`)
   const chapterVerse = new RegExp(`^(${chapter})[ ]*:[ ]*(${verse})\\b`)
   const bookFf = new RegExp(`^(?:${anyBookInAnyForm})[ ]*ff`)
 
@@ -146,8 +146,6 @@ export default function BibleBookRegex(...languageNames) {
           chapter: start.chapter,
         }
       }
-    } else{
-      console.log('match none',bookRegex)
     }
 
     return {
