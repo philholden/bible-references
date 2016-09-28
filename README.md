@@ -34,7 +34,7 @@ Book name are recognised in many forms:
 1 samuel, 1 sam, 1 sa, 1samuel, 1s, i sa, 1 sm, 1sa, i sam, 1sam, i samuel, 1st samuel, first samuel
 ```
 
-Comma newline and semicolon [,\n;] can be used interchangeably as group separators 
+Comma newline and semicolon [,\n;] can be used interchangeably as group separators
 
 ```
 Job 1:8,9, Mark 5
@@ -63,7 +63,7 @@ John 3:16ff
 John 3ff
 
 // range ends at end of Bible
-John 3:16 - 
+John 3:16 -
 ```
 
 ## Output
@@ -119,4 +119,4 @@ npm install --save-dev bible-references
 
 ## License
 
-CC0 (public domain)
+MIT

@@ -38,7 +38,7 @@
     "react-transform"
   ],
   "author": "Phil Holden (http://github.com/philholden)",
-  "license": "CC0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/philholden/bible-references/issues"
   },
